@@ -1,9 +1,9 @@
-# (C) Michael Pokojovy (2024)
-
-PATH = NULL # set path
+## (C) Michael Pokojovy (2023)
 
 library("KWA1D")
 library(foreach)
+
+setwd("???")
 
 source("auxil.R")
 

@@ -1,4 +1,4 @@
-# (C) Michael Pokojovy (2024)
+## (C) Michael Pokojovy (2023)
 
 do.simulation <- function(n, df = 1, nrep = 500, type = "loc", estimator = "KWA", 
                           logarithm.flag = TRUE, parallel.flag = TRUE) {
@@ -70,7 +70,6 @@ do.simulation <- function(n, df = 1, nrep = 500, type = "loc", estimator = "KWA"
     }
   }
   
-  #res = c(res[2], max(0.0, res[2] - nrep/(nrep - 1)*res[1]^2), sqrt(max(0.0, res[3] - nrep/(nrep - 1)*res[2]^2)))
   res = c(res[2], max(0.0, res[2] - nrep/(nrep - 1)*res[1]^2), sqrt(max(0.0, res[3] - nrep/(nrep - 1)*res[2]^2)))
       
   return(res)
