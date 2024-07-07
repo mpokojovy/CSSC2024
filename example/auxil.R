@@ -1,3 +1,5 @@
+## (C) Michael Pokojovy (2023)
+
 mu.hat <- function(x, df, estimator = "KWA") {
   est = if (estimator == "usual")
     mean(x)
@@ -12,17 +14,19 @@ mu.hat <- function(x, df, estimator = "KWA") {
   else if (estimator == "HL")
     0.5*median(outer(x, x, FUN = "+"))
   
-  return(est)
+  return(as.numeric(est))
 }
 
 sigma.hat <- function(x, df, estimator = "KWA") {
   c.IQR = qt(0.75, df) - qt(0.25, df)
   
-  c.MCD.50 = {alpha = 0.50; a = qcauchy(0.5*(1 - alpha)); b = qcauchy(1 - 0.5*(1 - alpha));
-  (b - a)/pi/alpha - 1}
-  
-  c.MCD.75 = {alpha = 0.75; a = qcauchy(0.5*(1 - alpha)); b = qcauchy(1 - 0.5*(1 - alpha));
-  (b - a)/pi/alpha - 1}
+  p = 1; bdp = 0.50
+  I = integrate(function(u) qf(u, p, df)*p, 0, 1 - bdp)$value
+  c.MCD.50 = 1/(I/(1 - bdp)/p)
+
+  p = 1; bdp = 0.25
+  I = integrate(function(u) qf(u, p, df)*p, 0, 1 - bdp)$value
+  c.MCD.75 = 1/(I/(1 - bdp)/p)
   
   Qn.constant = 1/(2.0^(0.5 + 0.5/df)*qt(5/8, df = df))
   
@@ -32,10 +36,10 @@ sigma.hat <- function(x, df, estimator = "KWA") {
     robustbase::s_Qn(x, constant = Qn.constant, finite.corr = FALSE, mu.too = FALSE)
   else if (estimator == "MCD.50") {
     mcd = robustbase::covMcd(x = x, raw.only = TRUE, use.correction = FALSE, alpha = 0.50) 
-    mcd$raw.cov/mcd$raw.cnp2[1]/c.MCD.50
+    mcd$raw.cov/mcd$raw.cnp2[1]*c.MCD.50
   } else if (estimator == "MCD.75") {
     mcd = robustbase::covMcd(x = x, raw.only = TRUE, use.correction = FALSE, alpha = 0.75) 
-    mcd$raw.cov/mcd$raw.cnp2[1]/c.MCD.75
+    mcd$raw.cov/mcd$raw.cnp2[1]*c.MCD.75
   } else if (estimator == "KWA")
     KWA1D::KWA1D.scale(x, df)
   else if (estimator == "IQR")
@@ -45,5 +49,5 @@ sigma.hat <- function(x, df, estimator = "KWA") {
     exp(0.5*median(outer(log.x, log.x, FUN = "+")))
   }
   
-  return(est)
+  return(as.numeric(est))
 }

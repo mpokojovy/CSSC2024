@@ -1,34 +1,30 @@
-PATH = NULL # set path
+## (C) Michael Pokojovy (2023)
 
-setwd(PATH)
+setwd("???")
 
 source("auxil.R")
 
-## Choose the dataset
+# Select the dataset
 dataset.name = "AMC"
 #dataset.name = "GME"
 #dataset.name = "FB"
 
+
 if (dataset.name == "FB") {
-  df = read.csv("FB.csv", sep = ",")
-  df$Date = as.Date(df$Date, tryFormats = "%Y-%m-%d")
-  df = df[order(df$Date), ]
+  dataset = read.csv("FB.csv", sep = ",")
 } else if (dataset.name == "AMC") {
-  df = read.csv("AMC.csv", sep = ",")
-  df$Date = as.Date(df$Date, tryFormats = "%Y-%m-%d")
-  df = df[order(df$Date), ]
+  dataset = read.csv("AMC.csv", sep = ",")
 } else {
-  df = read.csv("GME.csv", sep = ",")
-  df$Date = as.Date(df$Date, tryFormats = "%Y-%m-%d")
-  df = df[order(df$Date), ]
+  dataset = read.csv("GME.csv", sep = ",")
 }
+
+dataset$Date = as.Date(dataset$Date, tryFormats = "%Y-%m-%d")
+dataset = dataset[order(dataset$Date), ]
 
 ## Prepare log-diffs
 
-#price.out = approx(df$Date - min(df$Date), df$Close)$y
-#x = diff(log(price.out), differences = 1)
-
-x = diff(log(df$Close), differences = 1)
+x = diff(log(dataset$Close), differences = 1)
+n = length(x)
 
 ## Do search
 
@@ -48,7 +44,7 @@ for (i.df in 1:length(df.search)) {
   z = (x - est$loc)/est$scale
   
   #pval = ks.test(z, "pt", .df, exact = TRUE)$p.value
-  pval = (goftest::cvm.test(z, "pt", df = .df)$p.value)
+  pval = goftest::cvm.test(z, "pt", df = .df)$p.value
   
   pvals[i.df] = pval
   
@@ -79,8 +75,8 @@ par(mfcol = c(1, 1))
 
 x.grid = seq(from = min(x), to = max(x), length.out = 500)
 y.grid = dt((x.grid - loc)/scale, df = df)/scale
-plot(density(x, adjust = 1.0), main = bquote("Density plot ("*hat(df)~"="~.(df)*")"))
-lines(x.grid, y.grid, col = "red")
+plot(density(x, adjust = 1.0), main = bquote("Density plot ("*hat(df)~"="~.(df)*")"), lwd = 2)
+lines(x.grid, y.grid, col = "red", lty = 2, lwd = 2)
 
 grDevices::dev.off()
 
@@ -99,10 +95,57 @@ for (est in est.list) {
 }
 
 cat("\n")
-
 cat("Scale estimators:\n")
 
 est.list = c("KWA", "Qn", "IQR", "usual", "MCD.50", "MCD.75", "HL")
 for (est in est.list) {
   cat(est, " = ", sigma.hat(x, df = df, estimator = est), "\n")
+}
+
+cat("\n")
+cat("AIC:\n")
+
+est.list = c("KWA", "Qn", "usual", "MCD.50", "MCD.75", "HL")
+for (est in est.list) {
+  mu    = mu.hat(x, df = df, estimator = est)
+  sigma = sigma.hat(x, df = df, estimator = est)
+  
+  npar = 3L
+  z = (x - mu)/sigma
+  AIC = 2.0*npar - 2.0*sum(dt(z, df = df, log = TRUE))
+  
+  cat(est, " = ", AIC, "\n")
+}
+
+cat("\n")
+cat("BIC:\n")
+
+est.list = c("KWA", "Qn", "usual", "MCD.50", "MCD.75", "HL")
+for (est in est.list) {
+  mu    = mu.hat(x, df = df, estimator = est)
+  sigma = sigma.hat(x, df = df, estimator = est)
+  
+  npar = if (est == "HL") 2L else 3L
+  z = (x - mu)/sigma
+  BIC = npar*log(n) - 2.0*sum(dt(z, df = df, log = TRUE))
+  
+  cat(est, " = ", BIC, "\n")
+}
+
+cat("\n")
+cat("CvM p-value:\n")
+
+est.list = c("KWA", "Qn", "usual", "MCD.50", "MCD.75", "HL")
+for (est in est.list) {
+  mu    = mu.hat(x, df = df, estimator = est)
+  sigma = sigma.hat(x, df = df, estimator = est)
+  
+  if (is.na(sigma))
+    next
+  
+  npar = if (est == "HL") 2L else 3L
+  z = (x - mu)/sigma
+  pval = goftest::cvm.test(z, "pt", df = .df, estimated = TRUE)$p.value
+  
+  cat(est, " = ", pval, "\n")
 }
