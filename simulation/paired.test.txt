@@ -1,0 +1,132 @@
+Estimator: MCD.50 loc
+       n=30   n=50   n=100  n=200  n=500 
+df=1   "ours" "ours" "ours" "ours" "ours"
+df=2   "ours" "ours" "ours" "ours" "ours"
+df=3   "ours" "ours" "ours" "ours" "ours"
+df=4   "ours" "ours" "ours" "ours" "ours"
+df=5   "ours" "ours" "ours" "ours" "ours"
+df=10  "ours" "ours" "ours" "ours" "ours"
+df=20  "ours" "ours" "ours" "ours" "ours"
+df=30  "ours" "ours" "ours" "ours" "ours"
+df=Inf "ours" "ours" "ours" "ours" "ours"
+
+Estimator: MCD.75 loc
+       n=30   n=50   n=100  n=200  n=500 
+df=1   "ours" "ours" "ours" "ours" "ours"
+df=2   "ours" "ours" "ours" "ours" "ours"
+df=3   "ours" "ours" "ours" "ours" "ours"
+df=4   "ours" "ours" "ours" "ours" "ours"
+df=5   "ours" "ours" "ours" "ours" "ours"
+df=10  "ours" "ours" "ours" "ours" "ours"
+df=20  "ours" "ours" "ours" "ours" "ours"
+df=30  "ours" "ours" "ours" "ours" "ours"
+df=Inf "ours" "ours" "ours" "ours" "ours"
+
+Estimator: Qn loc
+       n=30   n=50   n=100  n=200  n=500 
+df=1   "ours" "ours" "ours" "ours" "ours"
+df=2   "ours" "ours" "ours" "ours" "ours"
+df=3   "ours" "ours" "ours" "ours" "ours"
+df=4   "ours" "ours" "ours" "ours" "ours"
+df=5   "ours" "ours" "ours" "ours" "ours"
+df=10  "ours" "ours" "ours" "ours" "ours"
+df=20  "ours" "ours" "ours" "ours" "ours"
+df=30  "ours" "ours" "ours" "ours" "ours"
+df=Inf "ours" "ours" "ours" "ours" "ours"
+
+Estimator: HL loc
+       n=30         n=50   n=100        n=200        n=500 
+df=1   "ours"       "ours" "ours"       "ours"       "ours"
+df=2   "ours"       "ours" "ours"       "ours"       "ours"
+df=3   "ours"       "ours" "ours"       "ours"       "ours"
+df=4   "ours"       "ours" "ours"       "ours"       "ours"
+df=5   "competitor" "ours" "competitor" "competitor" "ours"
+df=10  "ours"       "ours" "ours"       "ours"       "ours"
+df=20  "ours"       "ours" "ours"       "ours"       "ours"
+df=30  "ours"       "ours" "ours"       "ours"       "ours"
+df=Inf "ours"       "ours" "ours"       "ours"       "ours"
+
+Estimator: usual loc
+       n=30         n=50   n=100        n=200  n=500       
+df=1   "ours"       "ours" "ours"       "ours" "ours"      
+df=2   "ours"       "ours" "ours"       "ours" "ours"      
+df=3   "ours"       "ours" "ours"       "ours" "ours"      
+df=4   "ours"       "ours" "ours"       "ours" "ours"      
+df=5   "ours"       "ours" "ours"       "ours" "ours"      
+df=10  "ours"       "ours" "ours"       "ours" "ours"      
+df=20  "ours"       "ours" "ours"       "ours" "ours"      
+df=30  "competitor" "ours" "ours"       "ours" "competitor"
+df=Inf "competitor" "ours" "competitor" "ours" "competitor"
+
+Estimator: MCD.50 scale
+       n=30   n=50   n=100  n=200  n=500 
+df=1   "ours" "ours" "ours" "ours" "ours"
+df=2   "ours" "ours" "ours" "ours" "ours"
+df=3   "ours" "ours" "ours" "ours" "ours"
+df=4   "ours" "ours" "ours" "ours" "ours"
+df=5   "ours" "ours" "ours" "ours" "ours"
+df=10  "ours" "ours" "ours" "ours" "ours"
+df=20  "ours" "ours" "ours" "ours" "ours"
+df=30  "ours" "ours" "ours" "ours" "ours"
+df=Inf "ours" "ours" "ours" "ours" "ours"
+
+Estimator: MCD.75 scale
+       n=30   n=50   n=100  n=200  n=500 
+df=1   "ours" "ours" "ours" "ours" "ours"
+df=2   "ours" "ours" "ours" "ours" "ours"
+df=3   "ours" "ours" "ours" "ours" "ours"
+df=4   "ours" "ours" "ours" "ours" "ours"
+df=5   "ours" "ours" "ours" "ours" "ours"
+df=10  "ours" "ours" "ours" "ours" "ours"
+df=20  "ours" "ours" "ours" "ours" "ours"
+df=30  "ours" "ours" "ours" "ours" "ours"
+df=Inf "ours" "ours" "ours" "ours" "ours"
+
+Estimator: Qn scale
+       n=30         n=50         n=100        n=200        n=500       
+df=1   "competitor" "competitor" "competitor" "competitor" "competitor"
+df=2   "competitor" "competitor" "competitor" "competitor" "competitor"
+df=3   "ours"       "ours"       "ours"       "competitor" "competitor"
+df=4   "ours"       "ours"       "ours"       "ours"       "ours"      
+df=5   "ours"       "ours"       "ours"       "ours"       "ours"      
+df=10  "ours"       "ours"       "ours"       "ours"       "ours"      
+df=20  "ours"       "ours"       "ours"       "ours"       "ours"      
+df=30  "ours"       "ours"       "ours"       "ours"       "ours"      
+df=Inf "ours"       "ours"       "ours"       "ours"       "ours"      
+
+Estimator: HL scale
+       n=30         n=50         n=100        n=200        n=500       
+df=1   "competitor" "competitor" "competitor" "competitor" "competitor"
+df=2   "ours"       "ours"       "ours"       "ours"       "ours"      
+df=3   "ours"       "ours"       "ours"       "ours"       "ours"      
+df=4   "ours"       "ours"       "ours"       "ours"       "ours"      
+df=5   "ours"       "ours"       "ours"       "ours"       "ours"      
+df=10  "ours"       "ours"       "ours"       "ours"       "ours"      
+df=20  "ours"       "ours"       "ours"       "ours"       "ours"      
+df=30  "ours"       "ours"       "ours"       "ours"       "ours"      
+df=Inf "ours"       "ours"       "ours"       "ours"       "ours"      
+
+Estimator: IQR scale
+       n=30   n=50   n=100        n=200        n=500       
+df=1   "ours" "ours" "competitor" "competitor" "competitor"
+df=2   "ours" "ours" "ours"       "ours"       "ours"      
+df=3   "ours" "ours" "ours"       "ours"       "ours"      
+df=4   "ours" "ours" "ours"       "ours"       "ours"      
+df=5   "ours" "ours" "ours"       "ours"       "ours"      
+df=10  "ours" "ours" "ours"       "ours"       "ours"      
+df=20  "ours" "ours" "ours"       "ours"       "ours"      
+df=30  "ours" "ours" "ours"       "ours"       "ours"      
+df=Inf "ours" "ours" "ours"       "ours"       "ours"      
+
+Estimator: usual scale
+       n=30         n=50   n=100        n=200        n=500       
+df=1   "ours"       "ours" "ours"       "ours"       "ours"      
+df=2   "ours"       "ours" "ours"       "ours"       "ours"      
+df=3   "ours"       "ours" "ours"       "ours"       "ours"      
+df=4   "ours"       "ours" "ours"       "ours"       "ours"      
+df=5   "ours"       "ours" "ours"       "ours"       "ours"      
+df=10  "ours"       "ours" "ours"       "ours"       "ours"      
+df=20  "ours"       "ours" "ours"       "ours"       "ours"      
+df=30  "ours"       "ours" "ours"       "ours"       "ours"      
+df=Inf "competitor" "ours" "competitor" "competitor" "competitor"
+
